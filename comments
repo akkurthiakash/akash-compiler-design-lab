@@ -1,0 +1,39 @@
+%{
+#include <stdio.h>
+
+int nc = 0;
+extern FILE *yyin;
+
+%}
+
+%%
+"/*"([^*]|\*+[^*/])*\*+"/"    { nc++; }
+"//".*                       { nc++; }
+%%
+int yywrap()
+{
+    return 1;
+}
+
+int main(int argc, char *argv[])
+{
+    if (argc < 2)
+    {
+        printf("Usage: ./a.out <input_file\n");
+        return 1;
+    }
+
+    yyin = fopen(argv[1], "r");
+
+    if (yyin == NULL)
+    {
+        printf("File not found\n");
+        return 1;
+    }
+
+    yylex();
+    printf("The number of comment lines = %d\n", nc);
+
+fclose(yyin);
+    return 0;
+}
