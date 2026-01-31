@@ -1,4 +1,6 @@
+LEX PROGRAM FOR ADD LINE NUMBER
 %{
+
 #include<stdio.h>
 int ln=0;
 %}

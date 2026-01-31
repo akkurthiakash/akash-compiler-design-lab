@@ -1,26 +1,18 @@
+LEX PROGRAM FOR COUNT  VOWELS AND CONSONENTS
 %{
-#include <stdio.h>
-int vow_count = 0;
-int const_count = 0;
+int vow_count=0;
+int const_count=0;
 %}
-
 %%
-[aeiouAEIOU]      { vow_count++; }
-[a-zA-Z]          { const_count++; }
-[ \t\n]           ;        /* ignore spaces and newlines */
-.                 ;        /* ignore other characters */
+[aeiouAEIOU] {vow_count++;}
+[a-zA-Z] {const_count++;}
 %%
-
-int yywrap()
-{
-    return 1;
-}
-
+int yywrap(){}
 int main()
 {
-    printf("Enter the string of vowels and consonants:\n");
-    yylex();
-    printf("Number of vowels are: %d\n", vow_count);
-    printf("Number of consonants are: %d\n", const_count);
-    return 0;
+printf("enter the string of vowels and consonents:");
+yylex();
+printf("number of vowels are:%d\n",vow_count);
+printf("number of consonents are:%d\n",const_count);
+return 0;
 }
